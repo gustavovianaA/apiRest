@@ -1,0 +1,20 @@
+{
+    "name": "gva/apirest.php",
+    "description": "Treino para desenvolvimento de API",
+    "authors": [
+        {
+            "name": "Gustavo",
+            "email": "gustavow3dev@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4":{
+            "App\\":"App"
+        },
+        "files": [
+            "config.php"
+        ]
+    },
+    "require": {
+    }
+}
