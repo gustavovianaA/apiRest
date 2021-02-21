@@ -1,5 +1,5 @@
 <?php 
-$service_url = 'localhost/apirest/public_html/api/user';
+$service_url = 'localhost/apirest/api/public_html/api/user';
 $curl = curl_init($service_url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
