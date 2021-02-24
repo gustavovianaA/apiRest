@@ -14,8 +14,7 @@ class UserService
     public function __construct()
     {
         $this->user = new User;
-        $this->userData = $_POST;
-        $this->fields = ['name','email','password'];
+        $this->fields = ['name', 'email', 'password'];
     }
 
     public function get($id = null)
@@ -29,26 +28,38 @@ class UserService
 
     public function post()
     {
-        //to improve
-        foreach($this->fields as $field){
-            if(!Helper::validate($this->userData[$field],$field))
+        $this->userData = $_POST;
+        //improve validation
+        foreach ($this->fields as $field) {
+            if (!Helper::validate($this->userData[$field], $field))
                 throw new \Exception("Falha. Preencha corretamente os dados.");
         }
-        
-        if (isset($this->userData['id'])) {
-            $this->update();
-        } else {
-            return $this->user->insert($this->userData);
-        }
+        return $this->user->insert($this->userData);
     }
 
-    public function update()
+    public function put()
     {
-        return $this->user->update($this->userData);
+        $_PUT = array();
+        if (!strcasecmp($_SERVER['REQUEST_METHOD'], 'PUT')) {
+            parse_str(file_get_contents('php://input'), $_PUT);
+            $this->userData = $_PUT;
+            if (Helper::validate($this->userData['id'], 'id'))
+                return $this->user->update($this->userData);
+            else
+                throw new \Exception("Falha. Preencha corretamente os dados.");
+        }
     }
 
     public function delete()
     {
-        //todo
+        $_DELETE = array();
+        if (!strcasecmp($_SERVER['REQUEST_METHOD'], 'DELETE')) {
+            parse_str(file_get_contents('php://input'), $_DELETE);
+            $this->userData = $_DELETE;
+            if (Helper::validate($this->userData['id'], 'id'))
+                return $this->user->delete($this->userData);
+            else
+                throw new \Exception("Falha. Informe um id válido.");
+        }
     }
 }

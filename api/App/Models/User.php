@@ -74,19 +74,22 @@ class User
         }
     }
 
-    /*public static function delete($data){
+    public static function delete($data){
             $connPdo = new \PDO(DBDRIVE.': host='.DBHOST.'; dbname='.DBNAME, DBUSER, DBPASS);
-            $sql = 'INSERT INTO ' . self::$table . ' (email,password,name) VALUES (:email,:password,:name)';
+            $sql = 'DELETE FROM ' . self::$table . ' WHERE id=:id;';
             $stmt = $connPdo->prepare($sql);
-            $stmt->bindValue(':email',$data['email']);
-            $stmt->bindValue(':password',$data['password']);
-            $stmt->bindValue(':name',$data['name']);
+            $stmt->bindValue(':id',$data['id']);
             $stmt->execute();
+            $teste = '';
+            foreach($data as $d){
+                 $teste .= $d;
+            }
 
             if($stmt->rowCount() > 0){
-                return 'Usuário(a) inserido com sucesso!';
+                return 'Usuário(a) deletado com sucesso!';
             }else{
-                throw new \Exception("Falha ao inserir usuário(a)");
+                return $teste;
+                throw new \Exception("Falha ao deletar usuário(a)");
             }
-        }*/
+        }
 }
