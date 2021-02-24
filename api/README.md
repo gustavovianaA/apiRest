@@ -18,6 +18,7 @@ apirest/api/public_html/api/user
 <p>email :</p>
 <p>password : mínimo de 4 caracteres.</p>
 <p><strong>Multipart Form</strong></p>
+
 ## PUT
 
 ### Update
