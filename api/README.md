@@ -9,6 +9,6 @@ password
 apirest/api/public_html/api/user
 ## POST
 ### Insert
-name :
-email :
-password : mínimo de 4 caracteres.
+<p>name :</p>
+<p>email :</p>
+<p>password : mínimo de 4 caracteres.</p>
