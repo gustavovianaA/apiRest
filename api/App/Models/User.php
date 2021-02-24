@@ -59,11 +59,15 @@ class User
 
     public function update($data)
     {
-        $sql = 'INSERT INTO ' . self::$table . ' (email,password,name) VALUES (:email,:password,:name)';
         $sql = 'UPDATE ' . self::$table . ' SET email = :email, password = :password, name = :name WHERE id = :id';
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':id', $data['id']);
-        $stmt->bindValue(':email', $data['email']);
+        
+        if(empty($data['email']))
+            str_replace('email = :email,','',$sql);
+        else
+            $stmt->bindValue(':email', $data['email']);
+        //todo
         $stmt->bindValue(':password', $data['password']);
         $stmt->bindValue(':name', $data['name']);
  
